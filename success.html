@@ -1,0 +1,28 @@
+<!-- success.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Page</title>
+</head>
+<body>
+  <h2>Welcome to the Success Page!</h2>
+  <button onclick="logoutUser()">Logout</button>
+
+  <script>
+    // Функция для выхода из аккаунта
+    function logoutUser() {
+      // Отправляем POST-запрос на сервер для выхода из аккаунта
+      fetch('http://localhost:3000/logout', {
+        method: 'POST',
+      }).then(response => {
+        // После успешного выхода перенаправляем на страницу авторизации
+        window.location.href = '/login';
+      }).catch(error => {
+        console.error('Logout failed:', error);
+      });
+    }
+  </script>
+</body>
+</html>

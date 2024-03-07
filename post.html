@@ -1,0 +1,39 @@
+<!-- post.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Page</title>
+</head>
+<body>
+  <h2>Post Page</h2>
+  <form id="postForm">
+    <label for="inputString">Input String:</label>
+    <input type="text" id="inputString" name="inputString" required>
+    <br>
+    <button type="button" onclick="sendPostRequest()">Submit</button>
+  </form>
+
+  <script>
+    async function sendPostRequest() {
+      const inputString = document.getElementById('inputString').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ inputString }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Post request failed:', error);
+      }
+    }
+  </script>
+</body>
+</html>
